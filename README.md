@@ -5,6 +5,7 @@ Using UR5e to play chess
 ## Simulation Setup of Chessboard on gazebo
 
 
+<img width="321" alt="image" src="https://github.com/arunkru1998/chessrobo/assets/114765006/51d7edb9-a888-471c-ba89-d17a0e4db8e4">
 
 ### Requirements
 
