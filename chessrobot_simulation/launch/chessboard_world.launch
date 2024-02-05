@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Export env variable so that gazebo finds our models -->
+  <env name="GAZEBO_MODEL_PATH"
+       value="$(optenv GAZEBO_MODEL_PATH):$(find chessrobot_simulation)/models" />
+  
+  <!-- Launch file parameters -->
+  <arg name="paused"     default="true"/>
+  <arg name="debug"      default="false"/>
+  <arg name="gui"        default="true"/>
+  <arg name="rate"       default="125" />
+  <arg name="world_name" default="$(find chessrobot_simulation)/worlds/chessboard_set_on_table.world"/>
+  
+  <!-- Start up simulated world -->
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="paused"     value="$(arg paused)"/>
+    <arg name="debug"      value="$(arg debug)"/>
+    <arg name="gui"        value="$(arg gui)"/>
+  </include>
+
+</launch>
