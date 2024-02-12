@@ -2,10 +2,12 @@
 Using UR5e to play chess 
 
 
-## Simulation Setup of Chessboard on gazebo
+## Simulation Setup of Chessboard and UR5e on gazebo
 
 
 <img width="321" alt="image" src="https://github.com/arunkru1998/chessrobo/assets/114765006/51d7edb9-a888-471c-ba89-d17a0e4db8e4">
+<img width="292" alt="robot" src="https://github.com/arunkru1998/chessrobo/assets/114765006/cf5b256c-9625-49ee-97fd-353b25b6acc9">
+
 
 ### Requirements
 
@@ -26,7 +28,8 @@ mkdir src
 cd ..
 catkin_make
 cd src
-git clone https://github.com/pietrolechthaler/UR5-Pick-and-Place-Simulation/
+git clone https://github.com/arunkru1998/chessrobo
+git clone https://github.com/ros-industrial/universal_robot.git
 cd ..
 catkin_make
 source devel/setup.bash
@@ -34,7 +37,11 @@ source devel/setup.bash
 
 ### Usage
 
-Launch the world
+Launch the world with only Chessboard
 ```
 roslaunch chessrobot_simulation chessboard_world.launch 
+```
+Launch the world with Chessboard and Robot
+```
+roslaunch my_ur5_description my_ur5_bringup.launch 
 ```
