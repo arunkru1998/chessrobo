@@ -29,7 +29,7 @@ cd ..
 catkin_make
 cd src
 git clone https://github.com/arunkru1998/chessrobo
-git clone https://github.com/ros-industrial/universal_robot.git
+git clone -b noetic https://github.com/ros-industrial/universal_robot.git
 cd ..
 catkin_make
 source devel/setup.bash
