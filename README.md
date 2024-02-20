@@ -50,6 +50,6 @@ roslaunch my_ur5_description my_ur5_bringup.launch
 ### Usage
 ![ezgif com-video-to-gif-converter](https://github.com/arunkru1998/chessrobo/assets/114765006/4d048b2e-d9fd-42a0-99ac-d42fe5c5c1d7)
 
-Launch the world with only Chessboard
+Launch the world with UR5e along with RViz for motion control.
 ```
 roslaunch my_ur5_description my_ur5_moveit_bringup.launch 
