@@ -58,5 +58,6 @@ Run the C++ code to control the robot to move to desired location
 ```
 rosrun chessrobot_simulation pick_place_simple
 
+![grasp](https://github.com/arunkru1998/chessrobo/assets/114765006/b62323f0-336b-4418-8ee7-98695029eed5)
 
 
