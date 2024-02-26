@@ -53,12 +53,11 @@ roslaunch my_ur5_description my_ur5_bringup.launch
 Launch the world with UR5e along with RViz for motion control.
 ```
 roslaunch my_ur5_description my_ur5_moveit_bringup.launch
-
-
+```
 Run the C++ code to control the robot to move to desired location
 ```
 rosrun chessrobot_simulation pick_place_simple
-
+```
 ![ezgif com-video-to-gif-converter](https://github.com/arunkru1998/chessrobo/assets/114765006/4d048b2e-d9fd-42a0-99ac-d42fe5c5c1d7)
 
 ![grasp](https://github.com/arunkru1998/chessrobo/assets/114765006/b62323f0-336b-4418-8ee7-98695029eed5)
