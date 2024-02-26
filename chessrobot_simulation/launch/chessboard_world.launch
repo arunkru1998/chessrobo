@@ -10,7 +10,7 @@
   <arg name="gui"        default="true"/>
   <arg name="rate"       default="125" />
   <arg name="world_name" default="$(find chessrobot_simulation)/worlds/chessboard_set_on_table.world"/>
-  
+  <!-- <arg name="world_name" default="$(find chessrobot_simulation)/worlds/chessboard.world"/>   -->
   <!-- Start up simulated world -->
    <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(arg world_name)"/>

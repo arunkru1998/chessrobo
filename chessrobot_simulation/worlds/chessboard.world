@@ -1,8 +1,8 @@
-<sdf version='1.7'>
+<sdf version='1.6'>
   <world name='default'>
     <light name='sun' type='directional'>
       <cast_shadows>1</cast_shadows>
-      <pose>0 0 10 0 -0 0</pose>
+      <pose frame=''>0 0 10 0 -0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.2 0.2 0.2 1</specular>
       <attenuation>
@@ -12,11 +12,6 @@
         <quadratic>0.001</quadratic>
       </attenuation>
       <direction>-0.5 0.1 -0.9</direction>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
     </light>
     <model name='ground_plane'>
       <static>1</static>
@@ -69,7 +64,7 @@
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
-    <physics type='ode'>
+    <physics name='default_physics' default='0' type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
       <real_time_update_rate>1000</real_time_update_rate>
@@ -77,8 +72,11 @@
     <scene>
       <ambient>0.4 0.4 0.4 1</ambient>
       <background>0.7 0.7 0.7 1</background>
-      <shadows>1</shadows>
+      <shadows>0</shadows>
     </scene>
+    <audio>
+      <device>default</device>
+    </audio>
     <wind/>
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>
@@ -87,8 +85,398 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
+    <model name='table'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='surface'>
+          <pose frame=''>0 0 1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual1'>
+          <pose frame=''>0 0 1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='front_left_leg'>
+          <pose frame=''>0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_left_leg'>
+          <pose frame=''>0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='front_right_leg'>
+          <pose frame=''>0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_right_leg'>
+          <pose frame=''>0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='back_right_leg'>
+          <pose frame=''>-0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='back_right_leg'>
+          <pose frame=''>-0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='back_left_leg'>
+          <pose frame=''>-0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='back_left_leg'>
+          <pose frame=''>-0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.049323 -0.433161 0 0 -0 0</pose>
+    </model>
+    <model name='table_clone'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='surface'>
+          <pose frame=''>0 0 1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual1'>
+          <pose frame=''>0 0 1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='front_left_leg'>
+          <pose frame=''>0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_left_leg'>
+          <pose frame=''>0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='front_right_leg'>
+          <pose frame=''>0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_right_leg'>
+          <pose frame=''>0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='back_right_leg'>
+          <pose frame=''>-0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='back_right_leg'>
+          <pose frame=''>-0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='back_left_leg'>
+          <pose frame=''>-0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='back_left_leg'>
+          <pose frame=''>-0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.466042 -0.509452 0 0 -0 0</pose>
+    </model>
     <model name='chessboard'>
-      <static>0</static>
+      <static>1</static>
       <link name='link_0'>
         <inertial>
           <mass>1</mass>
@@ -100,15 +488,15 @@
             <iyz>0</iyz>
             <izz>0.166667</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose frame=''>0 0 0 0 0 0</pose>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
               <uri>model://chessboard/meshes/chessboard.dae</uri>
@@ -121,7 +509,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.005 0 -0 0</pose>
+          <pose frame=''>0 0 0.005 0 -0 0</pose>
           <geometry>
             <box>
               <size>0.368 0.368 0.01</size>
@@ -149,10 +537,9 @@
           </surface>
         </collision>
       </link>
-      <pose>3.34644 -2.98827 0 0 -0 0</pose>
     </model>
-    <model name='king_white'>
-      <static>0</static>
+    <model name='chessboard_base'>
+      <static>1</static>
       <link name='link_0'>
         <inertial>
           <mass>1</mass>
@@ -164,14 +551,1174 @@
             <iyz>0</iyz>
             <izz>0.166667</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0.045 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.68 0.45 0.09</size>
+            </box>
+          </geometry>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.045 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.68 0.45 0.09</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+      </link>
+    </model>
+    <model name='pawn_white0'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white1'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white2'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white3'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white4'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white5'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white6'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='pawn_white7'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='rook_white0'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://rook_white/meshes/rook.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='rook_white1'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://rook_white/meshes/rook.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='knight_white0'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://knight_white/meshes/knight.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='knight_white1'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://knight_white/meshes/knight.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='bishop_white0'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://bishop_white/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='bishop_white1'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://bishop_white/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>1 0.894 0.71 1</ambient>
+            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='king_white0'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
               <uri>model://king_white/meshes/king.dae</uri>
@@ -198,7 +1745,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -226,10 +1773,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>1.64348 -2.27883 0 0 -0 0</pose>
     </model>
-    <model name='queen_white'>
+    <model name='queen_white0'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -242,14 +1789,14 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
               <uri>model://queen_white/meshes/queen.dae</uri>
@@ -276,7 +1823,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -304,10 +1851,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>1.53171 -5.41427 0 0 -0 0</pose>
     </model>
-    <model name='bishop_white'>
+    <model name='pawn_black0'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -320,17 +1867,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://bishop_white/meshes/bishop.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -343,8 +1890,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -354,169 +1901,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>/home/colin/chessrobot_simulation/catkin_ws/src/chessrobot_simulation/models/bishop_white/meshes/bishop.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <collide_without_contact>0</collide_without_contact>
-              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
-              <collide_bitmask>1</collide_bitmask>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>2.62205 -1.79479 0 0 -0 0</pose>
-    </model>
-    <model name='bishop_white_clone_0'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://bishop_white/meshes/bishop.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <collide_without_contact>0</collide_without_contact>
-              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
-              <collide_bitmask>1</collide_bitmask>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.634764 -3.9149 1.08159 0 -0 0</pose>
-    </model>
-    <model name='knight_white'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://knight_white/meshes/knight.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -544,10 +1929,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>1.14272 -2.0453 0 0 -0 0</pose>
     </model>
-    <model name='knight_white_clone'>
+    <model name='pawn_black1'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -560,17 +1945,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://knight_white/meshes/knight.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -583,8 +1968,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -594,7 +1979,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -622,10 +2007,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.620514 -3.76556 1.08295 0 -0 1.57236</pose>
     </model>
-    <model name='rook_white'>
+    <model name='pawn_black2'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -638,17 +2023,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://rook_white/meshes/rook.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -661,8 +2046,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -672,7 +2057,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -700,10 +2085,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.883486 -2.50111 0 0 -0 0</pose>
     </model>
-    <model name='rook_white_clone'>
+    <model name='pawn_black3'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -716,17 +2101,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://rook_white/meshes/rook.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -739,8 +2124,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -750,7 +2135,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -778,10 +2163,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.632363 -3.99376 1.08295 0 -0 0</pose>
     </model>
-    <model name='pawn_white'>
+    <model name='pawn_black4'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -794,17 +2179,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -817,8 +2202,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -828,7 +2213,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -856,10 +2241,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.984476 -2.45389 0 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone'>
+    <model name='pawn_black5'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -872,17 +2257,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -895,8 +2280,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -906,7 +2291,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -934,10 +2319,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.691463 -3.77924 1.08058 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone_0'>
+    <model name='pawn_black6'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -950,17 +2335,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -973,8 +2358,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -984,7 +2369,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1012,10 +2397,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.69097 -3.967 1.08058 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone_1'>
+    <model name='pawn_black7'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1028,17 +2413,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1051,8 +2436,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -1062,7 +2447,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1090,10 +2475,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.692022 -3.9276 1.08058 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone_2'>
+    <model name='rook_black0'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1106,17 +2491,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://rook_black/meshes/rook.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1129,8 +2514,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -1140,7 +2525,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1168,10 +2553,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.693058 -3.88882 1.08058 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone_3'>
+    <model name='rook_black1'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1184,17 +2569,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://rook_black/meshes/rook.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1207,8 +2592,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -1218,7 +2603,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1246,10 +2631,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.694923 -3.85441 1.08058 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone_4'>
+    <model name='knight_black0'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1262,17 +2647,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://knight_black/meshes/knight.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1285,8 +2670,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -1296,7 +2681,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1324,10 +2709,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.690909 -3.74922 1.08058 0 -0 0</pose>
     </model>
-    <model name='pawn_white_clone_5'>
+    <model name='knight_black1'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1340,17 +2725,17 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <uri>model://knight_black/meshes/knight.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1363,8 +2748,8 @@
             <shader type='vertex'>
               <normal_map>__default__</normal_map>
             </shader>
-            <ambient>1 0.894 0.71 1</ambient>
-            <diffuse>0.5 0.4 0.3 1</diffuse>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
             <specular>0.01 0.01 0.01 1</specular>
             <emissive>0 0 0 1</emissive>
           </material>
@@ -1374,7 +2759,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1402,10 +2787,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>0.693027 -3.71124 1.08058 0 -0 0</pose>
     </model>
-    <model name='king_black'>
+    <model name='bishop_black0'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1418,14 +2803,170 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://bishop_black/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='bishop_black1'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://bishop_black/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+            <ambient>0.62 0.31 0.12 1</ambient>
+            <diffuse>0.4 0.2 0.1 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.03</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </link>
+    </model>
+    <model name='king_black0'>
+      <static>0</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>5e-07</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>1</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
               <uri>model://king_black/meshes/king.dae</uri>
@@ -1452,7 +2993,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1480,10 +3021,10 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>2.14625 -1.67319 0 0 -0 0</pose>
     </model>
-    <model name='queen_black'>
+    <model name='queen_black0'>
       <static>0</static>
       <link name='link_0'>
         <inertial>
@@ -1496,14 +3037,14 @@
             <iyz>0</iyz>
             <izz>5e-07</izz>
           </inertia>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
         <gravity>1</gravity>
         <self_collide>0</self_collide>
         <kinematic>1</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
               <uri>model://queen_black/meshes/queen.dae</uri>
@@ -1530,7 +3071,7 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose frame=''>0 0 0.015 0 -0 0</pose>
           <geometry>
             <cylinder>
               <radius>0.005</radius>
@@ -1558,1661 +3099,470 @@
             <bounce/>
           </surface>
         </collision>
+        <pose frame=''>0 0 0 0 0 0</pose>
       </link>
-      <pose>1.66969 -1.62578 0 0 -0 0</pose>
-    </model>
-    <model name='bishop_black'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://bishop_black/meshes/bishop.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>1.93765 -1.59207 0 0 -0 0</pose>
-    </model>
-    <model name='knight_black'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://knight_black/meshes/knight.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>1.97633 -1.70506 0 0 -0 0</pose>
-    </model>
-    <model name='rook_black'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://rook_black/meshes/rook.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>1.84797 -1.65815 0 0 -0 0</pose>
-    </model>
-    <model name='bishop_black_clone'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://bishop_black/meshes/bishop.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>2.6008 -3.39595 1.08159 0 -0 0</pose>
-    </model>
-    <model name='knight_black_clone'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://knight_black/meshes/knight.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.902802 -3.94873 1.08295 -0.000163 -0.002282 -1.49951</pose>
-    </model>
-    <model name='rook_black_clone'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://rook_black/meshes/rook.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.899984 -3.98717 1.08295 0 -0 0</pose>
-    </model>
-    <model name='pawn_black'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>2.06091 -1.8152 0 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.862002 -3.76348 1.08058 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone_0'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.862526 -3.80159 1.08058 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone_1'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.864354 -3.83755 1.08058 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone_2'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.859935 -3.87693 1.08058 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone_3'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.861406 -3.91116 1.08058 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone_4'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.862285 -3.94991 1.08058 0 -0 0</pose>
-    </model>
-    <model name='pawn_black_clone_5'>
-      <static>0</static>
-      <link name='link_0'>
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5e-07</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <gravity>1</gravity>
-        <self_collide>0</self_collide>
-        <kinematic>1</kinematic>
-        <enable_wind>0</enable_wind>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://pawn_black/meshes/pawn.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0.62 0.31 0.12 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-            <specular>0.01 0.01 0.01 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <transparency>0</transparency>
-          <cast_shadows>1</cast_shadows>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
-              </ode>
-            </contact>
-            <bounce/>
-          </surface>
-        </collision>
-      </link>
-      <pose>0.861514 -3.98897 1.08058 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>2529 891000000</sim_time>
-      <real_time>2569 216198137</real_time>
-      <wall_time>1706998943 454135570</wall_time>
-      <iterations>2529891</iterations>
-      <model name='bishop_black'>
-        <pose>0.911171 -3.79833 1.02621 0 -0 0</pose>
+      <sim_time>1237 852000000</sim_time>
+      <real_time>26 278328328</real_time>
+      <wall_time>1623701534 398900942</wall_time>
+      <iterations>26212</iterations>
+      <model name='bishop_black0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.79833 1.02621 0 -0 0</pose>
+          <pose frame=''>0.056 0.19 1.105 0 -0 3.1415</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='bishop_black_clone'>
-        <pose>0.911171 -3.91086 1.02621 0 -0 0</pose>
+      <model name='bishop_black1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.91086 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.056 0.19 1.105 0 -0 3.1415</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='bishop_white'>
-        <pose>0.649589 -3.79632 1.02621 0 -0 0</pose>
+      <model name='bishop_white0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.79632 1.02621 0 -0 0</pose>
+          <pose frame=''>0.056 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='bishop_white_clone_0'>
-        <pose>0.649589 -3.90934 1.02621 0 -0 0</pose>
+      <model name='bishop_white1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.90934 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.056 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
       <model name='chessboard'>
-        <pose>0.781691 -3.85293 1.01612 0 -0 0</pose>
+        <pose frame=''>0 -0 -0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.781691 -3.85293 1.01612 0 -0 0</pose>
+          <pose frame=''>0 0.32 1.095 0 -0 1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='chessboard_base'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose frame=''>0 0.32 1.005 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='chessclock'>
+        <pose frame=''>0.235 0.33 1.095 0 -0 3.1415</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose frame=''>0.235 0.33 1.095 0 -0 3.1415</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='king_black'>
-        <pose>0.911171 -3.86874 1.02621 0 -0 0</pose>
+      <model name='king_black0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.86874 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.019 0.19 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='king_white'>
-        <pose>0.649589 -3.86874 1.02621 0 -0 0</pose>
+      <model name='king_white0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.86874 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.019 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='knight_black'>
-        <pose>0.911078 -3.76634 1.02624 -0.000163 -0.002282 -1.49951</pose>
+      <model name='knight_black0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911078 -3.76634 1.02624 -0.000163 -0.002282 -1.49951</pose>
+          <pose frame=''>0.094 0.19 1.105 0 -0 3.1415</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='knight_black_clone'>
-        <pose>0.911078 -3.94873 1.02624 -0.000163 -0.002282 -1.49951</pose>
+      <model name='knight_black1'>
+        <pose frame=''>0 -0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911078 -3.94873 1.02624 -0.000163 -0.002282 -1.49951</pose>
+          <pose frame=''>-0.094 0.19 1.105 0 -0 3.1415</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='knight_white'>
-        <pose>0.649689 -3.94259 1.02621 0 -0 1.57236</pose>
+      <model name='knight_white0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649689 -3.94259 1.02621 0 -0 1.57236</pose>
+          <pose frame=''>0.094 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='knight_white_clone'>
-        <pose>0.64968 -3.76045 1.02621 0 -0 1.57236</pose>
+      <model name='knight_white1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.64968 -3.76045 1.02621 0 -0 1.57236</pose>
+          <pose frame=''>-0.094 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black'>
-        <pose>0.872378 -3.71725 1.02621 0 -0 0</pose>
+      <model name='pawn_black0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.71725 1.02621 0 -0 0</pose>
+          <pose frame=''>0.131 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone'>
-        <pose>0.872378 -3.76348 1.02621 0 -0 0</pose>
+      <model name='pawn_black1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.76348 1.02621 0 -0 0</pose>
+          <pose frame=''>0.094 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone_0'>
-        <pose>0.872378 -3.80159 1.02621 0 -0 0</pose>
+      <model name='pawn_black2'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.80159 1.02621 0 -0 0</pose>
+          <pose frame=''>0.056 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone_1'>
-        <pose>0.872378 -3.83755 1.02621 0 -0 0</pose>
+      <model name='pawn_black3'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.83755 1.02621 0 -0 0</pose>
+          <pose frame=''>0.019 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone_2'>
-        <pose>0.872378 -3.87693 1.02621 0 -0 0</pose>
+      <model name='pawn_black4'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.87693 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.019 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone_3'>
-        <pose>0.872378 -3.91116 1.02621 0 -0 0</pose>
+      <model name='pawn_black5'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.91116 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.056 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone_4'>
-        <pose>0.872378 -3.94991 1.02621 0 -0 0</pose>
+      <model name='pawn_black6'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.94991 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.094 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_black_clone_5'>
-        <pose>0.872378 -3.98897 1.02621 0 -0 0</pose>
+      <model name='pawn_black7'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.98897 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.131 0.228 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white'>
-        <pose>0.688244 -3.83616 1.02621 0 -0 0</pose>
+      <model name='pawn_white0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.83616 1.02621 0 -0 0</pose>
+          <pose frame=''>0.131 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone'>
-        <pose>0.688244 -3.79784 1.02621 0 -0 0</pose>
+      <model name='pawn_white1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.79784 1.02621 0 -0 0</pose>
+          <pose frame=''>0.094 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone_0'>
-        <pose>0.688244 -3.98716 1.02621 0 -0 0</pose>
+      <model name='pawn_white2'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.98716 1.02621 0 -0 0</pose>
+          <pose frame=''>0.056 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone_1'>
-        <pose>0.688244 -3.94848 1.02621 0 -0 0</pose>
+      <model name='pawn_white3'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.94848 1.02621 0 -0 0</pose>
+          <pose frame=''>0.019 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone_2'>
-        <pose>0.688244 -3.9097 1.02621 0 -0 0</pose>
+      <model name='pawn_white4'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.9097 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.019 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone_3'>
-        <pose>0.688244 -3.87189 1.02621 0 -0 0</pose>
+      <model name='pawn_white5'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.87189 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.056 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone_4'>
-        <pose>0.688244 -3.76037 1.02621 0 -0 0</pose>
+      <model name='pawn_white6'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.76037 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.094 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='pawn_white_clone_5'>
-        <pose>0.688244 -3.72086 1.02621 0 -0 0</pose>
+      <model name='pawn_white7'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.72086 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.131 0.415 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='queen_black'>
-        <pose>0.911171 -3.83568 1.02621 0 -0 0</pose>
+      <model name='queen_black0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.83568 1.02621 0 -0 0</pose>
+          <pose frame=''>0.019 0.19 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='queen_white'>
-        <pose>0.649589 -3.83568 1.02621 0 -0 0</pose>
+      <model name='queen_white0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.83568 1.02621 0 -0 0</pose>
+          <pose frame=''>0.019 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='rook_black'>
-        <pose>0.911071 -3.71873 1.02621 0 -0 0</pose>
+      <model name='rook_black0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911071 -3.71873 1.02621 0 -0 0</pose>
+          <pose frame=''>0.131 0.19 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='rook_black_clone'>
-        <pose>0.911071 -3.98717 1.02621 0 -0 0</pose>
+      <model name='rook_black1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911071 -3.98717 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.131 0.19 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='rook_white'>
-        <pose>0.649489 -3.72491 1.02621 0 -0 0</pose>
+      <model name='rook_white0'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649489 -3.72491 1.02621 0 -0 0</pose>
+          <pose frame=''>0.131 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
-      <model name='rook_white_clone'>
-        <pose>0.649489 -3.98428 1.02621 0 -0 0</pose>
+      <model name='rook_white1'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649489 -3.98428 1.02621 0 -0 0</pose>
+          <pose frame=''>-0.131 0.453 1.105 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -980 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
       <model name='table'>
-        <pose>0.763454 -3.84959 0 0 -0 0</pose>
+        <pose frame=''>-0.4 0.4 0 0 -0 1.5708</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>0.763454 -3.84959 0 0 -0 0</pose>
+          <pose frame=''>-0.4 0.4 0 0 -0 1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='table_clone'>
+        <pose frame=''>0.4 0.4 0 0 -0 1.5708</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0.4 0.4 0 0 -0 1.5708</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
-        <pose>0 0 10 0 -0 0</pose>
+        <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
     </state>
-    <model name='table'>
-      <static>0</static>
-      <link name='link'>
-        <collision name='surface'>
-          <pose>0 0 1 0 -0 0</pose>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>-0.85 1.55 2.6 0 0.73 -1.1</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='chessclock'>
+      <static>1</static>
+      <link name='link_0'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://chessclock/meshes/clock.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <transparency>0</transparency>
+          <cast_shadows>1</cast_shadows>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0.0175 0 -0 0</pose>
           <geometry>
             <box>
-              <size>1.5 0.8 0.03</size>
+              <size>0.1 0.14 0.035</size>
             </box>
           </geometry>
           <surface>
             <friction>
               <ode>
-                <mu>0.6</mu>
-                <mu2>0.6</mu2>
+                <mu>1</mu>
+                <mu2>1</mu2>
               </ode>
               <torsional>
                 <ode/>
               </torsional>
             </friction>
             <contact>
-              <ode/>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>0.001</max_vel>
+                <min_depth>0.1</min_depth>
+              </ode>
             </contact>
             <bounce/>
           </surface>
-          <max_contacts>10</max_contacts>
         </collision>
-        <visual name='visual1'>
-          <pose>0 0 1 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.8 0.03</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Wood</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='front_left_leg'>
-          <pose>0.68 0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='front_left_leg'>
-          <pose>0.68 0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='front_right_leg'>
-          <pose>0.68 -0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='front_right_leg'>
-          <pose>0.68 -0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='back_right_leg'>
-          <pose>-0.68 -0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='back_right_leg'>
-          <pose>-0.68 -0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='back_left_leg'>
-          <pose>-0.68 0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='back_left_leg'>
-          <pose>-0.68 0.38 0.5 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
       </link>
-      <pose>0.744758 -3.78074 0 0 -0 0</pose>
+      <pose frame=''>-0.759407 -1.47606 0 0 -0 0</pose>
     </model>
-    <gui fullscreen='0'>
-      <camera name='user_camera'>
-        <pose>2.08577 -3.70367 2.06638 -0 0.611643 -2.96707</pose>
-        <view_controller>orbit</view_controller>
-        <projection_type>perspective</projection_type>
-      </camera>
-    </gui>
+    <!-- A gazebo links attacher -->
+    <plugin name="ros_link_attacher_plugin" filename="libgazebo_ros_link_attacher.so"/>
   </world>
 </sdf>

@@ -12,10 +12,22 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   urdf
+  moveit_core
+  moveit_ros_planning
+  moveit_ros_planning_interface
+  moveit_ros_perception
+  pluginlib
+  moveit_visual_tools
+  rviz_visual_tools
+
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+
+## System dependencies are found with CMake's conventions
+set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -151,6 +163,31 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
+
+add_executable(pick_place_cobot_node src/pick_place_cobot.cpp)
+add_dependencies(pick_place_cobot_node ${chessrobot_simulation_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(pick_place_cobot_node
+  ${catkin_LIBRARIES}
+)
+
+
+# add_executable(pick_place_myur5e_node src/pick_place_myur5e.cpp)
+# add_dependencies(pick_place_myur5e_node ${chessrobot_simulation_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(pick_place_myur5e_node
+#   ${catkin_LIBRARIES}
+# )
+
+add_executable(pick_place_myur5e src/pick_place_myur5e.cpp)
+target_link_libraries(pick_place_myur5e ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS pick_place_myur5e DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+add_executable(pick_place_simple src/pick_place_simple.cpp)
+target_link_libraries(pick_place_simple ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS pick_place_simple DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 #############
 ## Install ##
 #############
