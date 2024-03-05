@@ -39,6 +39,7 @@
     <arg name="world_name" value="$(arg gazebo_world)"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="gui" value="$(arg gui)"/>
+    <arg name="verbose" value="true" />
   </include>
 
   <!-- Spawn the model loaded earlier in the simulation just started -->

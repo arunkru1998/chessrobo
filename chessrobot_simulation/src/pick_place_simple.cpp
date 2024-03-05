@@ -1,10 +1,11 @@
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
+#include <ros/ros.h>
 
 const double unit_square = 0.0375;
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "move_group_interface_tutorial");
+  ros::init(argc, argv, "pick_place_simple");
   ros::NodeHandle n;
   
   // ROS spinning must be running for the MoveGroupInterface to get information
@@ -51,13 +52,12 @@ int main(int argc, char** argv)
     // 2. Open the gripper
     moveit::planning_interface::MoveGroupInterface::Plan my_plan_gripper;
     moveit::core::RobotStatePtr current_state = move_group_interface_gripper.getCurrentState();
-    //
-    // Next get the current set of joint values for the group.
     std::vector<double> joint_group_positions;
     current_state->copyJointGroupPositions(joint_model_group_gripper, joint_group_positions);
 
     // Now, let's modify one of the joints, plan to the new joint space goal and visualize the plan.
-    joint_group_positions[0] = 0.593;  // -1/6 turn in radians
+    // joint_group_positions[0] = 0.593; 
+    joint_group_positions[0] = 0.55;  
     move_group_interface_gripper.setJointValueTarget(joint_group_positions);
 
     success = (move_group_interface_gripper.plan(my_plan_gripper) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
@@ -69,15 +69,9 @@ int main(int argc, char** argv)
   
   
   
-    // 3. Move TCP to top of e4
+    // 3. Move TCP to top of e2
     geometry_msgs::PoseStamped current_pose;
     current_pose = move_group_interface_arm.getCurrentPose("tool0");
-
-    // Print current pose and orientation
-    std::cout << "Current Pose (Position): " << current_pose.pose.position << std::endl;
-    std::cout << "Current Pose (Orientation): " << current_pose.pose.orientation << std::endl;
-
-
     geometry_msgs::Pose target_pose;
     geometry_msgs::Pose target_pose1;
 
@@ -98,7 +92,7 @@ int main(int argc, char** argv)
 
     move_group_interface_arm.move();
 
-    // 6. Move the TCP above the plate
+    // 6. Move the TCP above the pawn
     target_pose.position.z = target_pose.position.z - 0.1;
     move_group_interface_arm.setPoseTarget(target_pose);
 
@@ -115,7 +109,8 @@ int main(int argc, char** argv)
     current_state->copyJointGroupPositions(joint_model_group_gripper, joint_group_positions);
 
     // Now, let's modify one of the joints, plan to the new joint space goal and visualize the plan.
-    joint_group_positions[0] = 0.6981317;  
+    // joint_group_positions[0] = 0.6981317;
+    joint_group_positions[0] = 0.733;   
     move_group_interface_gripper.setJointValueTarget(joint_group_positions);
 
     success = (move_group_interface_gripper.plan(my_plan_gripper) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
@@ -124,6 +119,60 @@ int main(int argc, char** argv)
 
     move_group_interface_gripper.move();
 
+
+    // Add a delay
+    ros::Duration(2.0).sleep(); // Sleep for 2 seconds (adjust as needed)
+
+
+    // 6. Move the TCP above the e4
+    target_pose.position.z = target_pose.position.z + 0.1;
+    target_pose.position.y = target_pose.position.y + 2*unit_square;    
+    move_group_interface_arm.setPoseTarget(target_pose);
+
+    success = (move_group_interface_arm.plan(my_plan_arm) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+
+    // move_group_interface_arm.move();
+
+    // 6. Move the TCP to e4
+    target_pose.position.z = target_pose.position.z - 0.09;
+    move_group_interface_arm.setPoseTarget(target_pose);
+
+    success = (move_group_interface_arm.plan(my_plan_arm) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+
+    // move_group_interface_arm.move();
+
+
+    // 2. Open the gripper
+    current_state->copyJointGroupPositions(joint_model_group_gripper, joint_group_positions);
+
+    // Now, let's modify one of the joints, plan to the new joint space goal and visualize the plan.
+    // joint_group_positions[0] = 0.593; 
+    joint_group_positions[0] = 0.55;  
+    move_group_interface_gripper.setJointValueTarget(joint_group_positions);
+
+    success = (move_group_interface_gripper.plan(my_plan_gripper) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+
+    // move_group_interface_gripper.move();
+
+
+    // 1. Move to home position
+    move_group_interface_arm.setJointValueTarget(move_group_interface_arm.getNamedTargetValues("home"));
+    
+    success = (move_group_interface_arm.plan(my_plan_arm) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+
+   // move_group_interface_arm.move();
+
+  ros::shutdown();
+  return 0;
+}
 
     // // 1. Move to home position
     // move_group_interface_arm.setJointValueTarget(move_group_interface_arm.getNamedTargetValues("home"));
@@ -261,7 +310,3 @@ int main(int argc, char** argv)
     // ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
 
     // move_group_interface_gripper.move();
-
-  ros::shutdown();
-  return 0;
-}

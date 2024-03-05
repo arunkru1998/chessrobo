@@ -131,6 +131,29 @@
         <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>
     </xacro:robotiq_85_gripper> 
   
+<!-- 
+  Grasp Plugin -->
+  <gazebo>
+    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+      <arm>
+        <arm_name>gripper_gazebo</arm_name>
+        <palm_link> robotiq_85_left_inner_knuckle_link </palm_link>
+        <palm_link> robotiq_85_right_inner_knuckle_link </palm_link>
+        <gripper_link> robotiq_85_left_finger_tip_link </gripper_link>
+        <gripper_link> robotiq_85_right_finger_tip_link </gripper_link>
+      </arm>
+      <forces_angle_tolerance>90</forces_angle_tolerance>
+      <update_rate>4</update_rate>
+      <grip_count_threshold>4</grip_count_threshold>
+      <max_grip_count>8</max_grip_count>
+      <release_tolerance>0.01</release_tolerance>
+      <disable_collisions_on_attach>false</disable_collisions_on_attach>
+      <contact_topic>__default_topic__</contact_topic>
+    </plugin>
+  </gazebo>
+
+
+
   <!-- Gazebo FT sensor plugin -->
     <gazebo reference="wrist_3_joint">
         <provideFeedback>true</provideFeedback>
@@ -143,18 +166,5 @@
         <jointName>wrist_3_joint</jointName>
         </plugin>
     </gazebo>
-  
-  <!-- Gazebo grasping plugin -->
-    <gazebo>
-        <gripper name="gazebo_gripper">
-        <grasp_check>
-            <attach_steps>2</attach_steps>    <!-- default: 20 -->
-            <detach_steps>2</detach_steps>    <!-- default: 40 -->
-            <min_contact_count>3</min_contact_count>
-        </grasp_check>
-        <gripper_link>robotiq_85_left_finger_tip_link</gripper_link>
-        <gripper_link>robotiq_85_right_finger_tip_link</gripper_link>
-        <palm_link>robotiq_85_base_link</palm_link>
-        </gripper>
-    </gazebo>
 </robot>
+
