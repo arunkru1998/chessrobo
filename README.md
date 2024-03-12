@@ -64,7 +64,7 @@ rosrun chessrobot_simulation pick_place_simple
 
 ![grasp](https://github.com/arunkru1998/chessrobo/assets/114765006/b62323f0-336b-4418-8ee7-98695029eed5)
 
-## Get Robot to move based on input chess notation
+## Get robot to move based on input chess notation
 
 Launch the world with UR5e along with RViz for motion control.
 ```
