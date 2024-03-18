@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(chessrobot_simulation)
+project(chess_robot_service)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,29 +8,15 @@ project(chessrobot_simulation)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
+  message_generation
   rospy
   std_msgs
-  urdf
-  moveit_core
-  moveit_ros_planning
-  moveit_ros_planning_interface
-  moveit_ros_perception
-  pluginlib
-  moveit_visual_tools
-  rviz_visual_tools
-  chess_robot_service
-
+  geometry_msgs
+  message_runtime
 )
-
-
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
-## System dependencies are found with CMake's conventions
-set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
-find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -65,15 +51,16 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   PoseList.msg
+#   Message1.msg
+#   Message2.msg
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+   FILES
+   chess_ai.srv
+   motion_planning.srv
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -83,10 +70,11 @@ find_package(Boost REQUIRED COMPONENTS system)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   std_msgs  # Or other packages containing msgs
+   geometry_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -118,10 +106,10 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- INCLUDE_DIRS include
- LIBRARIES chessrobot_simulation
- CATKIN_DEPENDS roscpp rospy std_msgs urdf
- DEPENDS system_lib
+#  INCLUDE_DIRS include
+#  LIBRARIES chess_robot_service
+  CATKIN_DEPENDS message_generation rospy geometry_msgs message_runtime std_msgs
+#  DEPENDS system_lib
 )
 
 ###########
@@ -137,7 +125,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/chessrobot_simulation.cpp
+#   src/${PROJECT_NAME}/chess_robot_service.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -148,7 +136,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/chessrobot_simulation_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/chess_robot_service_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -165,50 +153,6 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-
-# add_executable(pick_place_cobot_node src/pick_place_cobot.cpp)
-# add_dependencies(pick_place_cobot_node ${chessrobot_simulation_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# target_link_libraries(pick_place_cobot_node
-#   ${catkin_LIBRARIES}
-# )
-
-# Add catkin specific configuration to the package
-# catkin_package(
-#   # Specify your package dependencies here
-#   CATKIN_DEPENDS robot_service
-# )
-
-# Specify additional locations of header files
-include_directories(
-  # Include directories for your package
-  ${catkin_INCLUDE_DIRS}
-)
-
-
-# add_executable(pick_place_myur5e_node src/pick_place_myur5e.cpp)
-# add_dependencies(pick_place_myur5e_node ${chessrobot_simulation_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# target_link_libraries(pick_place_myur5e_node
-#   ${catkin_LIBRARIES}
-# )
-
-# add_executable(pick_place_myur5e src/pick_place_myur5e.cpp)
-# target_link_libraries(pick_place_myur5e ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-# install(TARGETS pick_place_myur5e DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-
-# install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-add_executable(pick_place_simple src/pick_place_simple.cpp)
-target_link_libraries(pick_place_simple ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-install(TARGETS pick_place_simple DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-
-install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-add_executable(pose_receiver src/pose_receiver.cpp)
-add_dependencies(pose_receiver ${catkin_EXPORTED_TARGETS})
-target_link_libraries(pose_receiver ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-install(TARGETS pose_receiver DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-
-install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 #############
 ## Install ##
 #############
@@ -256,7 +200,7 @@ install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_chessrobot_simulation.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_chess_robot_service.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

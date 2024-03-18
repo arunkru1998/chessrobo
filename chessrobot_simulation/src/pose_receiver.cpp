@@ -2,14 +2,19 @@
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
-#include <geometry_msgs/PoseArray.h>  
+#include <geometry_msgs/PoseArray.h>
+#include <chess_robot_service/motion_planning.h>  
 // #include "robot_service/PoseList.h"
 
 
-void poseCallback(const geometry_msgs::PoseArray::ConstPtr& msg)
+bool poseCallback(chess_robot_service::motion_planning::Request  &req, chess_robot_service::motion_planning::Response &res)
 {
+  //access the pose array portion of the service
+  const geometry_msgs::PoseArray& poses = req.request;
   static const std::string PLANNING_GROUP_ARM = "manipulator";
   static const std::string PLANNING_GROUP_GRIPPER = "gripper";
+
+  moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
   
   // The :planning_interface:`MoveGroupInterface` class can be easily
   // setup using just the name of the planning group you would like to control and plan for.
@@ -31,40 +36,77 @@ void poseCallback(const geometry_msgs::PoseArray::ConstPtr& msg)
   moveit::planning_interface::MoveGroupInterface::Plan my_plan_arm;
   bool success;
   
-  // Set the pose target
-  for (const auto& pose : msg->poses)
+  // to use cartisan path planning
+  moveit_msgs::RobotTrajectory trajectory;
+  const double jump_threshold = 0.0;
+  const double eef_step = 0.01;
+  std::vector<geometry_msgs::Pose> waypoints;
+
+
+  // to add a collision object to represent the table top
+  moveit_msgs::CollisionObject collision_object;
+  collision_object.header.frame_id = move_group_interface_arm.getPlanningFrame();
+  collision_object.id = "base";
+  shape_msgs::SolidPrimitive primitive;
+  primitive.type = primitive.BOX;
+  primitive.dimensions.resize(3);
+  primitive.dimensions[primitive.BOX_X] = 0.8;
+  primitive.dimensions[primitive.BOX_Y] = 3;
+  primitive.dimensions[primitive.BOX_Z] = 1.03;
+
+  geometry_msgs::Pose box_pose;
+  box_pose.orientation.w = 1.0;
+  box_pose.position.x = 0;
+  box_pose.position.y = 0.0;
+  box_pose.position.z = -0.55;
+
+  collision_object.primitives.push_back(primitive);
+  collision_object.primitive_poses.push_back(box_pose);
+  collision_object.operation = collision_object.ADD;
+
+  std::vector<moveit_msgs::CollisionObject> collision_objects;
+  collision_objects.push_back(collision_object);
+
+  ROS_INFO_NAMED("tutorial", "Add an object into the world");
+  planning_scene_interface.addCollisionObjects(collision_objects);
+
+
+  // Set the pose target from the request
+  for (const auto& pose : poses.poses)
   {
-    move_group_interface_arm.setPoseTarget(pose);
+    waypoints.push_back(pose);
+    // waypoints.push_back(pose.position.x-0.1);
     
-    success = (move_group_interface_arm.plan(my_plan_arm) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+    // move_group_interface_arm.setPoseTarget(pose);
+    
+    // success = (move_group_interface_arm.plan(my_plan_arm) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+    success = (move_group_interface_arm.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
 
     if (success)
     {
         // Execute the motion
-        move_group_interface_arm.move();
+        // move_group_interface_arm.move();
+        move_group_interface_arm.execute(trajectory);
         ROS_INFO("Robot moved to the target pose successfully.");
     }
     else
     {
         ROS_ERROR("Failed to plan the motion to the target pose.");
     }
-  }
-  // // Set the pose target
-  // move_group_interface_arm.setPoseTarget(*msg);
+    waypoints.pop_back();
   
-  // success = (move_group_interface_arm.plan(my_plan_arm) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-
-  // if (success)
-  // {
-  //     // Execute the motion
-  //     move_group_interface_arm.move();
-  //     ROS_INFO("Robot moved to the target pose successfully.");
-  // }
-  // else
-  // {
-  //     ROS_ERROR("Failed to plan the motion to the target pose.");
-  // }
-
+  }
+  if (success)
+  {
+      // Execute the motion
+      // move_group_interface_arm.move();
+    res.feedback=true;
+  }
+  else
+  {
+    res.feedback=false;
+  }
+  return true;
 
 
 }
@@ -73,8 +115,13 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "pose_receiver");
   ros::NodeHandle nh;
+  ros::ServiceServer service = nh.advertiseService("robot_service", poseCallback);
+  ROS_INFO("Ready to execute motion planning");
 
-  ros::Subscriber sub = nh.subscribe("pose_topic",10, poseCallback);
+  // ros::ServiceClient client = nh.serviceClient<your_package::YourService>("your_service_name");
+
+
+  // ros::Subscriber sub = nh.subscribe("pose_topic",10, poseCallback);
 
   
   // ROS spinning must be running for the MoveGroupInterface to get information
