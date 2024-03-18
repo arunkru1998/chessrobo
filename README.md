@@ -35,6 +35,8 @@ catkin_make
 source devel/setup.bash
 ```
 
+Note: the path for individual models in the world files needs to be updated based on the current location on your system
+
 ### Usage
 
 Launch the world with only Chessboard
@@ -64,7 +66,7 @@ rosrun chessrobot_simulation pick_place_simple
 
 ![grasp](https://github.com/arunkru1998/chessrobo/assets/114765006/b62323f0-336b-4418-8ee7-98695029eed5)
 
-## Get robot to move based on input chess notation
+## Get robot to play with itself using chess ai engine
 
 Launch the world with UR5e along with RViz for motion control.
 ```
@@ -78,11 +80,16 @@ Run the robot_service node on a new terminal
 ```
 rosrun robot_service robot_service.py
 ```
-Publish any desired starting move for white on a new terminal (here I used d4)
+Run the chess_ai node on a new terminal
 ```
-rostopic pub /chess_notation_topic std_msgs/String "data: 'd4'" 
+rosrun chess_ai chess_ai_node.py
 ```
-![move_from_notation-ezgif com-crop](https://github.com/arunkru1998/chessrobo/assets/114765006/869f2138-5f01-4f4d-a2e3-6c20f24ff512)
+Publish start on a new terminal to get the robot to start playing chess against itself using stockfish AI
+```
+rostopic pub /chess_notation_topic std_msgs/String "data: 'start'" 
+```
+
+![chess_ai_working-ezgif com-video-to-gif-converter(1)](https://github.com/arunkru1998/chessrobo/assets/114765006/fec0471f-46e2-4d91-b107-ab485be9dbb3)
 
 
 
