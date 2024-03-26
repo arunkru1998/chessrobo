@@ -1,3 +1,4 @@
 geometry_msgs/PoseArray request
+string command
 ---
 bool feedback

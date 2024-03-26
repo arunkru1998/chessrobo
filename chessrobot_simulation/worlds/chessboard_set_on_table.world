@@ -155,7 +155,7 @@
       <static>0</static>
       <link name='link_0'>
         <inertial>
-          <mass>1</mass>
+          <mass>0.01</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
@@ -201,7 +201,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/colin/chessrobot_simulation/catkin_ws/src/chessrobot_simulation/models/king_white/meshes/king.dae</uri>
+              <uri>model://king_white/meshes/king.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -210,23 +210,50 @@
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.64348 -2.27883 0 0 -0 0</pose>
     </model>
     <model name='queen_white'>
@@ -276,35 +303,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://queen_white/meshes/queen.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.53171 -5.41427 0 0 -0 0</pose>
     </model>
     <model name='bishop_white'>
@@ -365,27 +419,50 @@
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
               <collide_without_contact>0</collide_without_contact>
               <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
               <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>2.62205 -1.79479 0 0 -0 0</pose>
     </model>
     <model name='bishop_white_clone_0'>
@@ -434,39 +511,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://bishop_white/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
               <collide_without_contact>0</collide_without_contact>
               <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
               <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.634764 -3.9149 1.08159 0 -0 0</pose>
     </model>
     <model name='knight_white'>
@@ -515,36 +615,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://knight_white/meshes/knight.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.14272 -2.0453 0 0 -0 0</pose>
     </model>
     <model name='knight_white_clone'>
@@ -593,36 +719,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://knight_white/meshes/knight.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.620514 -3.76556 1.08295 0 -0 1.57236</pose>
     </model>
     <model name='rook_white'>
@@ -671,36 +823,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://rook_black/meshes/rook.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.883486 -2.50111 0 0 -0 0</pose>
     </model>
     <model name='rook_white_clone'>
@@ -749,36 +927,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://rook_white/meshes/rook.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.632363 -3.99376 1.08295 0 -0 0</pose>
     </model>
     <model name='pawn_white'>
@@ -827,36 +1031,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.984476 -2.45389 0 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone'>
@@ -905,36 +1135,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.691463 -3.77924 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone_0'>
@@ -983,36 +1239,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.69097 -3.967 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone_1'>
@@ -1061,36 +1343,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.692022 -3.9276 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone_2'>
@@ -1139,36 +1447,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.693058 -3.88882 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone_3'>
@@ -1217,36 +1551,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.694923 -3.85441 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone_4'>
@@ -1295,36 +1655,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.690909 -3.74922 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_white_clone_5'>
@@ -1373,36 +1759,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_white/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.693027 -3.71124 1.08058 0 -0 0</pose>
     </model>
     <model name='king_black'>
@@ -1455,7 +1867,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/colin/chessrobot_simulation/catkin_ws/src/chessrobot_simulation/models/king_black/meshes/king.dae</uri>
+              <uri>model://king_black/meshes/king.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1556,36 +1968,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://queen_white/meshes/queen.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.66969 -1.62578 0 0 -0 0</pose>
     </model>
     <model name='bishop_black'>
@@ -1634,36 +2072,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://bishop_black/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.93765 -1.59207 0 0 -0 0</pose>
     </model>
     <model name='knight_black'>
@@ -1712,36 +2176,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://knight_black/meshes/knight.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.97633 -1.70506 0 0 -0 0</pose>
     </model>
     <model name='rook_black'>
@@ -1790,36 +2280,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://rook_black/meshes/rook.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>1.84797 -1.65815 0 0 -0 0</pose>
     </model>
     <model name='bishop_black_clone'>
@@ -1868,36 +2384,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://bishop_black/meshes/bishop.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>2.6008 -3.39595 1.08159 0 -0 0</pose>
     </model>
     <model name='knight_black_clone'>
@@ -1946,36 +2488,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://knight_black/meshes/knight.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.902802 -3.94873 1.08295 -0.000163 -0.002282 -1.49951</pose>
     </model>
     <model name='rook_black_clone'>
@@ -2024,36 +2592,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://rook_black/meshes/rook.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.899984 -3.98717 1.08295 0 -0 0</pose>
     </model>
     <model name='pawn_black'>
@@ -2102,36 +2696,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>2.06091 -1.8152 0 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone'>
@@ -2180,36 +2800,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.862002 -3.76348 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone_0'>
@@ -2258,36 +2904,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.862526 -3.80159 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone_1'>
@@ -2336,36 +3008,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.864354 -3.83755 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone_2'>
@@ -2414,36 +3112,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.859935 -3.87693 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone_3'>
@@ -2492,36 +3216,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.861406 -3.91116 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone_4'>
@@ -2570,36 +3320,62 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.862285 -3.94991 1.08058 0 -0 0</pose>
     </model>
     <model name='pawn_black_clone_5'>
@@ -2648,78 +3424,104 @@
         <collision name='collision'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>0 0 0.015 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <geometry>
-            <cylinder>
-              <radius>0.005</radius>
-              <length>0.03</length>
-            </cylinder>
+            <mesh>
+              <uri>model://pawn_black/meshes/pawn.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
                 <mu>1</mu>
                 <mu2>1</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
               </ode>
               <torsional>
-                <ode/>
+                <coefficient>1</coefficient>
+                <patch_radius>0</patch_radius>
+                <surface_radius>0</surface_radius>
+                <use_patch_radius>1</use_patch_radius>
+                <ode>
+                  <slip>0</slip>
+                </ode>
               </torsional>
             </friction>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+              <threshold>1e+06</threshold>
+            </bounce>
             <contact>
+              <collide_without_contact>0</collide_without_contact>
+              <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+              <collide_bitmask>1</collide_bitmask>
               <ode>
-                <kp>1e+07</kp>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
                 <kd>1</kd>
-                <max_vel>0.001</max_vel>
-                <min_depth>0.1</min_depth>
+                <max_vel>0.01</max_vel>
+                <min_depth>0</min_depth>
               </ode>
+              <bullet>
+                <split_impulse>1</split_impulse>
+                <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+                <soft_cfm>0</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+                <kp>1e+13</kp>
+                <kd>1</kd>
+              </bullet>
             </contact>
-            <bounce/>
           </surface>
         </collision>
-        <kinematic>0</kinematic>
       </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
       <pose>0.861514 -3.98897 1.08058 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>2779 22000000</sim_time>
-      <real_time>213 839392440</real_time>
-      <wall_time>1709579972 43294234</wall_time>
-      <iterations>213636</iterations>
+      <sim_time>2848 483000000</sim_time>
+      <real_time>69 927846389</real_time>
+      <wall_time>1711150946 809514360</wall_time>
+      <iterations>69461</iterations>
       <model name='bishop_black'>
-        <pose>0.911171 -3.79833 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.911171 -3.79833 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.79833 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.911171 -3.79833 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='bishop_black_clone'>
-        <pose>0.911171 -3.91086 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.911171 -3.91086 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.91086 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.911171 -3.91086 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='bishop_white'>
-        <pose>0.649589 -3.79638 1.02518 0.067409 -0.06984 -0.004075</pose>
+        <pose>0.649592 -3.79638 1.02517 0.073436 -0.073134 -0.004369</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.79638 1.02518 0.067409 -0.06984 -0.004075</pose>
+          <pose>0.649592 -3.79638 1.02517 0.073436 -0.073134 -0.004369</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.00042 0.00073 0.006997 2.09263 0.862705 -3.13814</acceleration>
-          <wrench>4e-06 7e-06 7e-05 0 -0 0</wrench>
+          <acceleration>0 0 0 -1e-06 -2e-06 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='bishop_white_clone_0'>
-        <pose>0.649589 -3.90934 1.02522 -6.8e-05 -0.000366 0</pose>
+        <pose>0.64959 -3.90934 1.02521 -0.000197 -0.001074 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.90934 1.02522 -6.8e-05 -0.000366 0</pose>
+          <pose>0.64959 -3.90934 1.02521 -0.000197 -0.001074 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -2756,230 +3558,230 @@
         </link>
       </model>
       <model name='king_white'>
-        <pose>0.649656 -3.86868 1.02446 0.079584 -0.079177 -0.002095</pose>
+        <pose>0.650924 -3.86927 1.02638 0.031884 0.061759 -0.010427</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649656 -3.86868 1.02446 0.079584 -0.079177 -0.002095</pose>
+          <pose>0.650924 -3.86927 1.02638 0.031884 0.061759 -0.010427</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.6e-05 5e-06 -3.2e-05 -0.029602 -0.025046 -0.005424</acceleration>
-          <wrench>1.6e-05 5e-06 -3.2e-05 0 -0 0</wrench>
+          <acceleration>-0 0 -9.8 0 -0 0</acceleration>
+          <wrench>-0 -0 -0.098 0 -0 0</wrench>
         </link>
       </model>
       <model name='knight_black'>
-        <pose>0.911078 -3.76634 1.02525 -0.000319 -0.00259 -1.49951</pose>
+        <pose>0.911078 -3.76634 1.02524 -0.000456 -0.003294 -1.49951</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911078 -3.76634 1.02525 -0.000319 -0.00259 -1.49951</pose>
+          <pose>0.911078 -3.76634 1.02524 -0.000456 -0.003294 -1.49951</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 -0 -0 -0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='knight_black_clone'>
-        <pose>0.911078 -3.94873 1.02525 -0.000339 -0.00249 -1.49951</pose>
+        <pose>0.911078 -3.94873 1.02524 -0.000476 -0.003194 -1.49951</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911078 -3.94873 1.02525 -0.000339 -0.00249 -1.49951</pose>
+          <pose>0.911078 -3.94873 1.02524 -0.000476 -0.003194 -1.49951</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 -0 -0 -0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='knight_white'>
-        <pose>0.649689 -3.94259 1.02522 -0.000222 -0.000266 1.57236</pose>
+        <pose>0.64969 -3.94259 1.02521 -0.000814 -0.000675 1.57236</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649689 -3.94259 1.02522 -0.000222 -0.000266 1.57236</pose>
+          <pose>0.64969 -3.94259 1.02521 -0.000814 -0.000675 1.57236</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='knight_white_clone'>
-        <pose>0.64968 -3.76045 1.02522 -0.00026 -8.6e-05 1.57236</pose>
+        <pose>0.649681 -3.76045 1.02521 -0.000968 4.4e-05 1.57236</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.64968 -3.76045 1.02522 -0.00026 -8.6e-05 1.57236</pose>
+          <pose>0.649681 -3.76045 1.02521 -0.000968 4.4e-05 1.57236</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black'>
-        <pose>0.872378 -3.71725 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.872378 -3.71725 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.71725 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.872378 -3.71725 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone'>
-        <pose>0.872378 -3.76348 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.872378 -3.76348 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.76348 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.872378 -3.76348 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone_0'>
-        <pose>0.872378 -3.80159 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.872378 -3.80159 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.80159 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.872378 -3.80159 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone_1'>
-        <pose>0.872378 -3.83755 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.872379 -3.83755 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.83755 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.872379 -3.83755 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone_2'>
-        <pose>0.872378 -3.87693 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.872379 -3.87693 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.87693 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.872379 -3.87693 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone_3'>
-        <pose>0.872378 -3.91116 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.872379 -3.91116 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.91116 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.872379 -3.91116 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone_4'>
-        <pose>0.872378 -3.94991 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.872379 -3.94991 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.94991 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.872379 -3.94991 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_black_clone_5'>
-        <pose>0.872378 -3.98897 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.872379 -3.98897 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.872378 -3.98897 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.872379 -3.98897 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white'>
-        <pose>0.688244 -3.83616 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.688245 -3.83616 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.83616 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.688245 -3.83616 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone'>
-        <pose>0.688244 -3.79784 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.688245 -3.79784 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.79784 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.688245 -3.79784 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone_0'>
-        <pose>0.688244 -3.98716 1.02522 -6.8e-05 -0.000366 0</pose>
+        <pose>0.688245 -3.98716 1.02521 -0.000197 -0.001074 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.98716 1.02522 -6.8e-05 -0.000366 0</pose>
+          <pose>0.688245 -3.98716 1.02521 -0.000197 -0.001074 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone_1'>
-        <pose>0.688244 -3.94848 1.02522 -6.8e-05 -0.000366 0</pose>
+        <pose>0.688245 -3.94848 1.02521 -0.000197 -0.001074 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.94848 1.02522 -6.8e-05 -0.000366 0</pose>
+          <pose>0.688245 -3.94848 1.02521 -0.000197 -0.001074 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone_2'>
-        <pose>0.688244 -3.9097 1.02522 -6.8e-05 -0.000366 0</pose>
+        <pose>0.688245 -3.9097 1.02521 -0.000197 -0.001074 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.9097 1.02522 -6.8e-05 -0.000366 0</pose>
+          <pose>0.688245 -3.9097 1.02521 -0.000197 -0.001074 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone_3'>
-        <pose>0.688244 -3.8705 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.688245 -3.8705 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.8705 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.688245 -3.8705 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone_4'>
-        <pose>0.688244 -3.76037 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.688245 -3.76037 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.76037 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.688245 -3.76037 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='pawn_white_clone_5'>
-        <pose>0.688244 -3.72086 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.688245 -3.72086 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.688244 -3.72086 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.688245 -3.72086 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='queen_black'>
-        <pose>0.911171 -3.83568 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.911171 -3.83568 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911171 -3.83568 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.911171 -3.83568 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='queen_white'>
-        <pose>0.649589 -3.83568 1.02522 -6.8e-05 -0.000366 0</pose>
+        <pose>0.64959 -3.83568 1.02521 -0.000197 -0.001074 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649589 -3.83568 1.02522 -6.8e-05 -0.000366 0</pose>
+          <pose>0.64959 -3.83568 1.02521 -0.000197 -0.001074 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -2989,119 +3791,119 @@
         <pose>0.28 -3.85 1.03 -1e-05 -4.3e-05 -1.56999</pose>
         <scale>1 1 1</scale>
         <link name='forearm_link'>
-          <pose>0.28141 -3.85001 1.6675 -1.57084 -0.022436 -3.14</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 -0.1185 0.00848 -0.119632</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
+          <pose>0.282288 -3.85001 1.66749 -1.57084 -0.034432 -3.14</pose>
+          <velocity>-0 -0 0 0 -5e-06 0</velocity>
+          <acceleration>-0 -0 -0 -0.131689 0.008454 -0.183224</acceleration>
+          <wrench>-0 -0 -0 0 -0 0</wrench>
         </link>
         <link name='pedestal'>
           <pose>0.28 -3.85 1.03 -1e-05 -4.3e-05 -1.56999</pose>
-          <velocity>0 0 -0 -0 -0 -0</velocity>
-          <acceleration>0 0 -0 -2.7712 -0.367912 -2.91977</acceleration>
+          <velocity>0 -0 -0 0 -0 0</velocity>
+          <acceleration>0 0 -0 2.84874 -1.56804 2.71709</acceleration>
           <wrench>0 0 -0 0 -0 0</wrench>
         </link>
         <link name='robotiq_85_left_finger_tip_link'>
-          <pose>0.817497 -3.98257 1.44236 1.59581 1.54181 -3.11415</pose>
-          <velocity>1.1e-05 0 9e-06 1e-06 -0.000214 0</velocity>
-          <acceleration>0.010827 3e-05 0.008846 0.000119 -0.17863 0.000179</acceleration>
-          <wrench>0.000212 1e-06 0.000173 0 -0 0</wrench>
+          <pose>0.814759 -3.98258 1.43538 1.58659 1.52585 -3.12337</pose>
+          <velocity>1.2e-05 0 1.2e-05 1e-06 -0.00022 0</velocity>
+          <acceleration>0.012481 3.3e-05 0.011533 0.00012 -0.183544 0.000157</acceleration>
+          <wrench>0.000244 1e-06 0.000226 0 -0 0</wrench>
         </link>
         <link name='robotiq_85_left_inner_knuckle_link'>
-          <pose>0.78118 -3.98263 1.48649 1.59546 1.54139 -3.1145</pose>
-          <velocity>1e-06 0 1e-06 1e-06 -0.000223 0</velocity>
-          <acceleration>0.000983 1e-06 0.000745 0.003677 -0.03186 5.1e-05</acceleration>
-          <wrench>2.9e-05 0 2.2e-05 0 -0 0</wrench>
+          <pose>0.77916 -3.98263 1.48009 1.58637 1.52521 -3.12359</pose>
+          <velocity>2e-06 0 3e-06 1e-06 -0.000229 0</velocity>
+          <acceleration>0.002256 3e-06 0.003392 0.003722 -0.032662 -5e-06</acceleration>
+          <wrench>6.8e-05 0 0.000102 0 -0 0</wrench>
         </link>
         <link name='robotiq_85_left_knuckle_link'>
-          <pose>0.799262 -3.98258 1.49248 1.59536 1.54139 -3.11461</pose>
-          <velocity>1e-06 0 1e-06 0 -6e-06 0</velocity>
-          <acceleration>-0 -0 -0 1.09683 -0.441345 -1.92951</acceleration>
-          <wrench>-0 -0 -0 0 -0 0</wrench>
-        </link>
-        <link name='robotiq_85_right_finger_tip_link'>
-          <pose>0.716978 -3.98281 1.44527 -1.54577 1.54181 -3.11416</pose>
-          <velocity>1.4e-05 0 -1.1e-05 1e-06 -0.000296 0</velocity>
-          <acceleration>0.013826 2.3e-05 -0.011299 0.000165 -0.246928 0.000253</acceleration>
-          <wrench>0.00027 0 -0.000221 0 -0 0</wrench>
-        </link>
-        <link name='robotiq_85_right_inner_knuckle_link'>
-          <pose>0.75579 -3.98269 1.48722 -1.5454 1.54223 -3.11379</pose>
-          <velocity>1e-06 0 1e-06 1e-06 -0.000306 0</velocity>
-          <acceleration>0.000979 1e-06 0.000587 0.005046 -0.04374 7.5e-05</acceleration>
-          <wrench>2.9e-05 0 1.8e-05 0 -0 0</wrench>
-        </link>
-        <link name='robotiq_85_right_knuckle_link'>
-          <pose>0.738086 -3.98273 1.49425 -1.54549 1.54223 -3.11388</pose>
-          <velocity>1e-06 0 0 0 -2.2e-05 0</velocity>
-          <acceleration>0.00087 1e-06 6.6e-05 0.004522 -0.011856 -0.000865</acceleration>
-          <wrench>4e-05 0 3e-06 0 -0 0</wrench>
-        </link>
-        <link name='shoulder_link'>
-          <pose>0.280002 -3.84999 1.2425 0 1.8e-05 0.001596</pose>
-          <velocity>0 -0 -0 0 -0 0</velocity>
-          <acceleration>-0 -0 0 -1e-06 0 -0.00015</acceleration>
-          <wrench>-0 -0 0 0 -0 0</wrench>
-        </link>
-        <link name='upper_arm_link'>
-          <pose>0.280002 -3.84999 1.2425 -1.58396 1.56748 3.13002</pose>
-          <velocity>0 -0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0.001514 0 -0.005923</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='wrist_1_link'>
-          <pose>0.673724 -3.98269 1.65869 1.57242 -1.54182 -2.4e-05</pose>
-          <velocity>-0 -0 0 0 -6e-06 0</velocity>
-          <acceleration>-0 0 -0 -0.279626 -0.747957 -0.000464</acceleration>
+          <pose>0.797336 -3.98258 1.48579 1.58631 1.52521 -3.12366</pose>
+          <velocity>2e-06 0 4e-06 0 -1.3e-05 0</velocity>
+          <acceleration>-0 0 -0 0.771047 -0.582593 -1.89735</acceleration>
           <wrench>-0 0 -0 0 -0 0</wrench>
         </link>
+        <link name='robotiq_85_right_finger_tip_link'>
+          <pose>0.714317 -3.98282 1.43989 -1.555 1.52585 -3.12338</pose>
+          <velocity>1.5e-05 0 -9e-06 1e-06 -0.000303 0</velocity>
+          <acceleration>0.015178 2.5e-05 -0.009293 0.000167 -0.252754 0.000227</acceleration>
+          <wrench>0.000297 0 -0.000182 0 -0 0</wrench>
+        </link>
+        <link name='robotiq_85_right_inner_knuckle_link'>
+          <pose>0.753786 -3.98269 1.48123 -1.55477 1.52648 -3.12315</pose>
+          <velocity>2e-06 0 3e-06 1e-06 -0.000313 -0</velocity>
+          <acceleration>0.002242 3e-06 0.00306 0.00511 -0.044701 1e-06</acceleration>
+          <wrench>6.7e-05 0 9.2e-05 0 -0 0</wrench>
+        </link>
+        <link name='robotiq_85_right_knuckle_link'>
+          <pose>0.736196 -3.98273 1.48854 -1.55483 1.52648 -3.12322</pose>
+          <velocity>2e-06 0 3e-06 0 -2.8e-05 0</velocity>
+          <acceleration>0.002054 2e-06 0.002303 0.005779 -0.015254 -0.00112</acceleration>
+          <wrench>9.4e-05 0 0.000105 0 -0 0</wrench>
+        </link>
+        <link name='shoulder_link'>
+          <pose>0.280002 -3.84999 1.2425 0 1.7e-05 0.001594</pose>
+          <velocity>0 -0 -0 0 -0 0</velocity>
+          <acceleration>0 -0 -0 -1e-06 -0 -0.000293</acceleration>
+          <wrench>0 -0 -0 0 -0 0</wrench>
+        </link>
+        <link name='upper_arm_link'>
+          <pose>0.280002 -3.84999 1.2425 -1.57888 1.56542 3.1351</pose>
+          <velocity>0 -0 0 0 -0 0</velocity>
+          <acceleration>-0 0 -0 0.002411 -0 -0.005529</acceleration>
+          <wrench>-0 0 -0 0 -0 0</wrench>
+        </link>
+        <link name='wrist_1_link'>
+          <pose>0.674468 -3.98269 1.65399 1.57184 -1.52585 0.000553</pose>
+          <velocity>-0 -0 2e-06 0 -1.3e-05 0</velocity>
+          <acceleration>-0 -0 -0 2.86499 -0.710465 3.14022</acceleration>
+          <wrench>-0 -0 -0 0 -0 0</wrench>
+        </link>
         <link name='wrist_2_link'>
-          <pose>0.773382 -3.98253 1.6558 -1.59977 -0.000745 -1.56917</pose>
-          <velocity>-0 -0 1e-06 0 -6e-06 0</velocity>
-          <acceleration>-0 -0 -0 0.076984 0.000123 -0.000352</acceleration>
+          <pose>0.774067 -3.98252 1.64951 -1.61574 -0.000743 -1.56916</pose>
+          <velocity>0 -0 3e-06 0 -1.3e-05 0</velocity>
+          <acceleration>-0 -0 -0 0.076666 0.000123 -0.000489</acceleration>
           <wrench>-0 -0 -0 0 -0 0</wrench>
         </link>
         <link name='wrist_3_link'>
-          <pose>0.770496 -3.9826 1.55625 -3.14087 -0.028981 -3.13919</pose>
-          <velocity>1e-06 0 1e-06 0 -6e-06 0</velocity>
-          <acceleration>-0 -0 -0 -0.000589 -3e-06 -0.005786</acceleration>
+          <pose>0.769592 -3.98261 1.55001 -3.14088 -0.04495 -3.13919</pose>
+          <velocity>1e-06 0 3e-06 0 -1.3e-05 0</velocity>
+          <acceleration>-0 -0 -0 -0.000628 -3e-06 -0.005687</acceleration>
           <wrench>-0 -0 -0 0 -0 0</wrench>
         </link>
       </model>
       <model name='rook_black'>
-        <pose>0.911071 -3.71873 1.02522 -0.000273 -2.7e-05 0</pose>
+        <pose>0.911071 -3.71873 1.02521 -0.000865 -0.000437 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911071 -3.71873 1.02522 -0.000273 -2.7e-05 0</pose>
+          <pose>0.911071 -3.71873 1.02521 -0.000865 -0.000437 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 -0 0 0 -0 0</acceleration>
           <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='rook_black_clone'>
-        <pose>0.911071 -3.98717 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.911072 -3.98717 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.911071 -3.98717 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.911072 -3.98717 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='rook_white'>
-        <pose>0.649489 -3.72491 1.02522 -0.000174 -0.000212 0</pose>
+        <pose>0.64949 -3.72491 1.02521 -0.000303 -0.00092 -0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649489 -3.72491 1.02522 -0.000174 -0.000212 0</pose>
+          <pose>0.64949 -3.72491 1.02521 -0.000303 -0.00092 -0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='rook_white_clone'>
-        <pose>0.649489 -3.98428 1.02522 -6.8e-05 -0.000366 0</pose>
+        <pose>0.64949 -3.98428 1.02521 -0.000197 -0.001074 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.649489 -3.98428 1.02522 -6.8e-05 -0.000366 0</pose>
+          <pose>0.64949 -3.98428 1.02521 -0.000197 -0.001074 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -3318,7 +4120,7 @@
     </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>1.71188 -4.14464 1.75176 0 0.523643 2.86011</pose>
+        <pose>1.15473 -4.02023 1.33106 0 0.523643 2.86011</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
