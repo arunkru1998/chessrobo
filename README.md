@@ -68,6 +68,14 @@ rosrun chessrobot_simulation pick_place_simple
 
 ## Get robot to play with itself using chess ai engine
 
+Start roscore
+```
+roscore
+```
+Run the chess_ai node on a new terminal
+```
+rosrun chess_ai chess_ai_node.py
+```
 Launch the world with UR5e along with RViz for motion control.
 ```
 roslaunch my_ur5_description my_ur5_moveit_bringup.launch
@@ -80,16 +88,13 @@ Run the robot_service node on a new terminal
 ```
 rosrun robot_service robot_service.py
 ```
-Run the chess_ai node on a new terminal
-```
-rosrun chess_ai chess_ai_node.py
-```
 Publish start on a new terminal to get the robot to start playing chess against itself using stockfish AI
 ```
 rostopic pub /chess_notation_topic std_msgs/String "data: 'start'" 
 ```
+![ezgif com-cut](https://github.com/arunkru1998/chessrobo/assets/114765006/39295b97-8d5b-4661-a703-c5a70b3c5d6c)
 
-![chess_ai_working-ezgif com-video-to-gif-converter(1)](https://github.com/arunkru1998/chessrobo/assets/114765006/fec0471f-46e2-4d91-b107-ab485be9dbb3)
+
 
 
 
