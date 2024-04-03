@@ -31,12 +31,18 @@ double degreesToRadians(double degrees) {
 double findJointAngle(const std::string& key) {
     // Dictionary mapping strings to double values
     std::unordered_map<std::string, double> dictionary = {
-        {"k", 40.50},
-        {"q", 40.50},
-        {"b", 41.00},
-        {"r", 41.00},
-        {"n", 41.00},
-        {"p", 42.00}
+        // {"k", 36.0100},
+        // {"q", 36.0100},
+        // {"b", 36.0200},
+        // {"r", 37.25},
+        // {"n", 37.00},
+        // {"p", 38.100}
+        {"k", 36.0100},
+        {"q", 36.0100},
+        {"b", 36.0100},
+        {"r", 37.0100},
+        {"n", 37.0100},
+        {"p", 38.100}
         // Add more entries as needed
     };
 
@@ -60,12 +66,12 @@ double findJointAngle(const std::string& key) {
 double find_z_offset(const std::string& key) {
     // Dictionary mapping strings to double values
     std::unordered_map<std::string, double> dictionary = {
-        {"k", 0.035},
-        {"q", 0.035},
-        {"b", 0.035},
-        {"r", 0.035},
-        {"n", 0.035},
-        {"p", 0.04}
+        {"k", 0.13},
+        {"q", 0.13},
+        {"b", 0.13},
+        {"r", 0.13},
+        {"n", 0.13},
+        {"p", 0.13}
         // Add more entries as needed
     };
 
@@ -131,7 +137,7 @@ bool openGripper(moveit::planning_interface::MoveGroupInterface& move_group_inte
 
   // Now, let's modify one of the joints, plan to the new joint space goal and visualize the plan.
   // joint_group_positions[0] = 0.6981317;
-  joint_group_positions[0] = 0.53;   
+  joint_group_positions[0] = 0.51;   
   move_group_interface_gripper.setJointValueTarget(joint_group_positions);
   moveit::planning_interface::MoveGroupInterface::Plan gripper_plan;
 
@@ -141,6 +147,7 @@ bool openGripper(moveit::planning_interface::MoveGroupInterface& move_group_inte
   {
       // Execute the planned motion to close the gripper
       move_group_interface_gripper.execute(gripper_plan);
+      ros::Duration(2.0).sleep();
       ROS_INFO("Gripper opened successfully.");
   }
   else

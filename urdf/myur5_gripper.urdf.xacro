@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur5e_robot">
+ 
+    <xacro:include filename="$(find ur_gazebo)/urdf/ur_macro.xacro"/>
+    <xacro:include filename="$(find robotiq_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+
+  <!--Declare arguments -->
+    <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/ur5e/joint_limits.yaml"/>
+    <xacro:arg name="physical_params" default="$(find ur_description)/config/ur5e/physical_parameters.yaml"/>
+    <xacro:arg name="kinematics_params" default="$(find ur_description)/config/ur5e/default_kinematics.yaml"/>
+    <xacro:arg name="visual_params" default="$(find ur_description)/config/ur5e/visual_parameters.yaml"/>
+  <!--
+    legal values:
+      - hardware_interface/PositionJointInterface
+      - hardware_interface/VelocityJointInterface
+      - hardware_interface/EffortJointInterface
+
+    NOTE: this value must correspond to the controller configured in the
+          controller .yaml files in the 'config' directory.
+  -->
+    <xacro:arg name="transmission_hw_interface" default="hardware_interface/EffortJointInterface"/>
+    <xacro:arg name="safety_limits" default="false"/>
+    <xacro:arg name="safety_pos_margin" default="0.15"/>
+    <xacro:arg name="safety_k_position" default="20"/>
+
+  <!-- Instantiate the Gazebo robot and pass it all the required arguments. -->
+    <xacro:ur_robot_gazebo
+        prefix=""
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)"
+        transmission_hw_interface="$(arg transmission_hw_interface)"
+        safety_limits="$(arg safety_limits)"
+        safety_pos_margin="$(arg safety_pos_margin)"
+        safety_k_position="$(arg safety_k_position)"
+    />
+
+  <!--
+    Attach the Gazebo model to Gazebo's world frame.
+
+    Note: if you're looking to integrate a UR into a larger scene and need
+    to add EEFs or other parts, DO NOT change this file or the 'world' link
+    here. Create a NEW xacro instead and decide whether you need to add
+    a 'world' link there.
+  -->
+
+    <link name="world"/>
+  <!-- Define UR robot integration -->
+    <link name="pedestal">
+        <inertial>
+            <origin xyz="0 0 0.025" rpy="0 0 0"/>
+            <mass value="20"/>
+            <inertia ixx="200" ixy="200" ixz="200" iyy="200" iyz="200" izz="200"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0.025" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.025" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+    <Gazebo reference="pedestal">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Orange</material>
+    </Gazebo>
+    <joint name="pedestal_to_world" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="pedestal"/>
+    </joint>
+    <joint name="pedastal_joint" type="fixed">
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
+        <parent link="pedestal"/>
+        <child link="base_link"/>
+    </joint>
+  <!-- Robotiq Coupler -->
+  <!--  + Height added by the coupler: 8mm -->
+  <!--  + Reference frame: at the middle (4mm) -->
+    <link name="robotiq_coupler">
+        <visual>
+        <geometry>
+            <mesh filename="package://robotiq_description/meshes/robotiq_85_coupler.stl" />
+        </geometry>
+        <material name="flat_black"/>
+        </visual>
+        <collision>
+        <geometry>
+            <mesh filename="package://robotiq_description/meshes/robotiq_85_coupler.stl" />
+        </geometry>
+        </collision>
+        <inertial>
+        <origin xyz="2.073e-05   1.45286e-03  -1.1049e-03" rpy="0 0 0" />
+        <mass value="0.168" />
+        <inertia ixx="6.69695624e-05" ixy="5.21511788e-09" ixz="-2.74383009e-08" 
+               iyy="7.85088161e-05" iyz="5.41105193e-07" izz="1.41819717e-04"/>
+        </inertial>
+    </link>
+
+    <joint name="robotiq_coupler_joint" type="fixed">
+        <origin xyz="0 0 0.004" rpy="0 0 ${-pi/2.0}" />
+        <parent link="tool0"/>
+        <child link="robotiq_coupler"/>
+    </joint>
+    <gazebo reference="robotiq_coupler">
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+  
+  <!-- Equivalent to the OpenRAVE manipulator denso_robotiq_85_gripper -->
+  <!-- <link name="denso_robotiq_85_gripper" /> -->
+  <!-- <joint name="manipulator_dummy_joint" type="fixed"> -->
+  <!--   <origin xyz="0 0 0.1441" rpy="0 0 0" /> -->
+  <!--   <parent link="robotiq_coupler"/> -->
+  <!--   <child link="denso_robotiq_85_gripper"/> -->
+  <!-- </joint> -->
+  
+  <!-- Attach the robotiq 85 gripper -->
+    <xacro:robotiq_85_gripper prefix="" parent="robotiq_coupler" >
+        <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>
+    </xacro:robotiq_85_gripper> 
+  
+<!-- 
+  Grasp Plugin -->
+  <gazebo>
+    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+      <arm>
+        <arm_name>gripper_gazebo</arm_name>
+        <palm_link> robotiq_85_left_inner_knuckle_link </palm_link>
+        <palm_link> robotiq_85_right_inner_knuckle_link </palm_link>
+        <gripper_link> robotiq_85_left_finger_tip_link </gripper_link>
+        <gripper_link> robotiq_85_right_finger_tip_link </gripper_link>
+      </arm>
+      <forces_angle_tolerance>100</forces_angle_tolerance>
+      <update_rate>4</update_rate>
+      <grip_count_threshold>4</grip_count_threshold>
+      <max_grip_count>8</max_grip_count>
+      <release_tolerance>0.0005</release_tolerance>
+      <disable_collisions_on_attach>false</disable_collisions_on_attach>
+      <contact_topic>__default_topic__</contact_topic>
+    </plugin>
+  </gazebo>
+
+
+
+  <!-- Gazebo FT sensor plugin -->
+    <gazebo reference="wrist_3_joint">
+        <provideFeedback>true</provideFeedback>
+    </gazebo>
+    <gazebo>
+        <plugin name="ft_sensor_plugin" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>250.0</updateRate>
+        <topicName>ft_sensor/raw</topicName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <jointName>wrist_3_joint</jointName>
+        </plugin>
+    </gazebo>
+</robot>
+
